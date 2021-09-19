@@ -75,20 +75,16 @@ const createToolsArea = (newCar) => {
   newCar.append(toolsPanel);
 
   const editBtn = document.createElement("span");
-  editBtn.classList.add("edit");
-  editBtn.innerHTML = `<i class="btn text-success btn-sm bi-pencil-square"></i
+  editBtn.innerHTML = `<i class="btn edit text-success btn-sm bi-pencil-square"></i
   >`;
-  // editBtn.textContent = "EDIT";
+
   const deleteBtn = document.createElement("span");
-  deleteBtn.classList.add("delete");
-  deleteBtn.innerHTML = `<i class="btn text-danger btn-sm bi bi-x-square"></i
+  deleteBtn.innerHTML = `<i class="btn delete text-danger btn-sm bi bi-x-square"></i
   >`;
   toolsPanel.append(editBtn, deleteBtn);
 };
 
 const checkClick = (e) => {
-  // console.log(e.target);
-
   if (e.target.matches(".edit")) {
     editCar(e);
   } else if (e.target.matches(".delete")) {
@@ -97,9 +93,7 @@ const checkClick = (e) => {
 };
 
 const editCar = (e) => {
-  console.log("edit");
   carToEdit = e.target.closest("tr");
-  console.log(carToEdit.children[0].textContent);
 
   editBrandInput.value = carToEdit.children[0].textContent;
   editModelInput.value = carToEdit.children[1].textContent;
@@ -121,8 +115,12 @@ const changeCarText = () => {
   }
 };
 
-const deleteCar = () => {
-  console.log("delete");
+const deleteCar = (e) => {
+  e.target.closest("tr").remove();
+  const allCars = carList.querySelectorAll("tr");
+  if (allCars.length === 0) {
+    errorInfo.textContent = "No cars to display :(";
+  }
 };
 
 document.addEventListener("DOMContentLoaded", main);
