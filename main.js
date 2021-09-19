@@ -16,9 +16,39 @@ const prepareDOMElements = () => {
   carList = document.querySelector(".carlist tbody");
 };
 
-const prepareDOMEvents = () => {};
+const prepareDOMEvents = () => {
+  addBtn.addEventListener("click", addNewCar);
+};
 
-const addNewCar = () => {};
+const addNewCar = () => {
+  console.log("newCar");
+
+  if (
+    brandInput.value !== "" &&
+    modelInput.value !== "" &&
+    yearInput.value !== ""
+  ) {
+    const newCar = document.createElement("tr");
+    console.log(modelInput.value);
+    const newBrand = document.createElement("td");
+    newBrand.textContent = brandInput.value;
+    const newModel = document.createElement("td");
+    newModel.textContent = modelInput.value;
+    const newYear = document.createElement("td");
+    newYear.textContent = yearInput.value;
+
+    newCar.append(newBrand, newModel, newYear);
+
+    carList.append(newCar);
+
+    brandInput.value = "";
+    modelInput.value = "";
+    yearInput.value = "";
+    errorInfo.textContent = "";
+  } else {
+    errorInfo.textContent = "Complete all fields";
+  }
+};
 
 const createToolsArea = () => {};
 
