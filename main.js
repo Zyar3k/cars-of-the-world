@@ -38,7 +38,7 @@ const addNewCar = () => {
     newYear.textContent = yearInput.value;
 
     newCar.append(newBrand, newModel, newYear);
-
+    createToolsArea(newCar);
     carList.append(newCar);
 
     brandInput.value = "";
@@ -50,7 +50,22 @@ const addNewCar = () => {
   }
 };
 
-const createToolsArea = () => {};
+const createToolsArea = (newCar) => {
+  const toolsPanel = document.createElement("td");
+  toolsPanel.classList.add("tools");
+  newCar.append(toolsPanel);
+
+  const editBtn = document.createElement("span");
+  editBtn.classList.add("edit");
+  editBtn.innerHTML = `<i class="btn text-success btn-sm bi-pencil-square"></i
+  >`;
+  // editBtn.textContent = "EDIT";
+  const deleteBtn = document.createElement("span");
+  deleteBtn.classList.add("delete");
+  deleteBtn.innerHTML = `<i class="btn text-danger btn-sm bi bi-x-square"></i
+  >`;
+  toolsPanel.append(editBtn, deleteBtn);
+};
 
 const editCar = () => {};
 
