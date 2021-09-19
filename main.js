@@ -11,8 +11,11 @@ let brandInput,
   editModelInput,
   editYearInput,
   editButton,
-  editInfo;
-
+  editInfo,
+  sortBrandBtn,
+  sortModelBtn,
+  sortYearBtn;
+let desc = false;
 let cars = [
   {
     id: 18,
@@ -107,16 +110,36 @@ const prepareDOMElements = () => {
   editYearInput = document.querySelector("#edit-year-input");
   editButton = document.querySelector(".edit-button");
   editInfo = document.querySelector(".edit-info");
+  // sort
+  sortBrandBtn = document.querySelector(".sort-by-brand");
+  sortModelBtn = document.querySelector(".sort-by-model");
+  sortYearBtn = document.querySelector(".sort-by-year");
 };
 
 const prepareDOMEvents = () => {
   addBtn.addEventListener("click", addNewCar);
   carList.addEventListener("click", checkClick);
   editButton.addEventListener("click", changeCarText);
+  sortBrandBtn.addEventListener("click", () => {
+    let array = sortArrayBy(cars, "brand", desc);
+    displayList(array);
+    desc = !desc;
+  });
+  sortModelBtn.addEventListener("click", () => {
+    let array = sortArrayBy(cars, "model", desc);
+    displayList(array);
+    desc = !desc;
+  });
+  sortYearBtn.addEventListener("click", () => {
+    let array = sortArrayBy(cars, "year", desc);
+    displayList(array);
+    desc = !desc;
+  });
 };
 
 const displayList = () => {
   let item;
+  carList.innerHTML = "";
   cars.forEach((car) => {
     item = document.createElement("tr");
 
@@ -135,6 +158,17 @@ const displayList = () => {
     </td>`;
     carList.append(item);
   });
+};
+
+const sortArrayBy = (array, sort, desc) => {
+  array.sort((a, b) => {
+    if (a[sort] < b[sort]) return -1;
+    if (a[sort] > b[sort]) return 1;
+    return 0;
+  });
+  if (desc) array.reverse();
+
+  return array;
 };
 
 const addNewCar = () => {
