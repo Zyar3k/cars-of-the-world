@@ -172,15 +172,12 @@ const sortArrayBy = (array, sort, desc) => {
 };
 
 const addNewCar = () => {
-  console.log("newCar");
-
   if (
     brandInput.value !== "" &&
     modelInput.value !== "" &&
     yearInput.value !== ""
   ) {
     const newCar = document.createElement("tr");
-    console.log(modelInput.value);
     const newBrand = document.createElement("td");
     newBrand.textContent = brandInput.value;
     const newModel = document.createElement("td");
@@ -240,7 +237,6 @@ const changeCarText = () => {
     editModelInput.value !== "" &&
     editYearInput.value !== ""
   ) {
-    console.log(carToEdit.children[0].textContent);
     carToEdit.children[0].textContent = editBrandInput.value;
     carToEdit.children[1].textContent = editModelInput.value;
     carToEdit.children[2].textContent = editYearInput.value;
