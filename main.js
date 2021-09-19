@@ -1,6 +1,17 @@
 "use strict";
 
-let brandInput, modelInput, yearInput, errorInfo, addBtn, carList;
+let brandInput,
+  modelInput,
+  yearInput,
+  errorInfo,
+  addBtn,
+  carList,
+  carToEdit,
+  editBrandInput,
+  editModelInput,
+  editYearInput,
+  editButton,
+  editInfo;
 
 const main = () => {
   prepareDOMElements();
@@ -14,10 +25,18 @@ const prepareDOMElements = () => {
   errorInfo = document.querySelector(".error-info");
   addBtn = document.querySelector(".btn-add");
   carList = document.querySelector(".carlist tbody");
+  // edit
+  editBrandInput = document.querySelector("#edit-brand-input");
+  editModelInput = document.querySelector("#edit-model-input");
+  editYearInput = document.querySelector("#edit-year-input");
+  editButton = document.querySelector(".edit-button");
+  editInfo = document.querySelector(".edit-info");
 };
 
 const prepareDOMEvents = () => {
   addBtn.addEventListener("click", addNewCar);
+  carList.addEventListener("click", checkClick);
+  editButton.addEventListener("click", changeCarText);
 };
 
 const addNewCar = () => {
@@ -67,8 +86,43 @@ const createToolsArea = (newCar) => {
   toolsPanel.append(editBtn, deleteBtn);
 };
 
-const editCar = () => {};
+const checkClick = (e) => {
+  // console.log(e.target);
 
-const deleteCar = () => {};
+  if (e.target.matches(".edit")) {
+    editCar(e);
+  } else if (e.target.matches(".delete")) {
+    deleteCar(e);
+  }
+};
+
+const editCar = (e) => {
+  console.log("edit");
+  carToEdit = e.target.closest("tr");
+  console.log(carToEdit.children[0].textContent);
+
+  editBrandInput.value = carToEdit.children[0].textContent;
+  editModelInput.value = carToEdit.children[1].textContent;
+  editYearInput.value = carToEdit.children[2].textContent;
+};
+
+const changeCarText = () => {
+  if (
+    editBrandInput.value !== "" &&
+    editModelInput.value !== "" &&
+    editYearInput.value !== ""
+  ) {
+    console.log(carToEdit.children[0].textContent);
+    carToEdit.children[0].textContent = editBrandInput.value;
+    carToEdit.children[1].textContent = editModelInput.value;
+    carToEdit.children[2].textContent = editYearInput.value;
+  } else {
+    editInfo.textContent = "Fields cannot be empty!";
+  }
+};
+
+const deleteCar = () => {
+  console.log("delete");
+};
 
 document.addEventListener("DOMContentLoaded", main);
