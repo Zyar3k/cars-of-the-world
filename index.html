@@ -26,7 +26,7 @@
       </div>
     </nav>
     <div class="container">
-      <table class="table table-striped mt-4" id="car-table">
+      <table class="table table-striped mt-4 carlist" id="car-table">
         <thead>
           <tr>
             <th>Brand <i class="btn bi bi-filter mx-4"></i></th>
@@ -93,20 +93,21 @@
                 Add new car
               </h5>
               <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
               ></button>
             </div>
+            <p class="error-info text-danger text-center mt-3">Complete all fields</p>
             <div class="modal-body">
               <form>
                 <label for="brand-input">Brand</label>
-                <input type="text" id="brand-input" class="form-control brand-input"  />
+                <input type="text" id="brand-input" class="form-control"  />
                 <label for="model-input">Model</label>
-                <input type="text" class="form-control model-input"  />
+                <input type="text" class="form-control"  />
                 <label for="year-input">Year</label>
-                <input type="text" class="form-control year-input"  />
+                <input type="text" class="form-control"  />
                 <div class="modal-footer">
                   <button type="button" class="btn btn-primary btn-add mt-3 ">Add</button>
                 </div>
